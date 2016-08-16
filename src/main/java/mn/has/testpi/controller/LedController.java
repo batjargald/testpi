@@ -52,7 +52,7 @@ public class LedController {
 	}
 	
 	@RequestMapping("/right")
-	public String right(){
+	public String right() throws InterruptedException{
 		if(pin==null){
 			GpioController gpio = GpioFactory.getInstance();
 			pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
@@ -60,12 +60,18 @@ public class LedController {
 		
 		for (int i=0; i<100; i++)
 		{
-			pin.pulse(1);
-			try {
-				java.lang.Thread.sleep(0, 20000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			pin.high();
+			java.lang.Thread.sleep(0, 1000);
+			pin.low();
+			java.lang.Thread.sleep(0, 19000);
+		}
+		
+		for (int i=0; i<100; i++)
+		{
+			pin.high();
+			java.lang.Thread.sleep(0, 2000);
+			pin.low();
+			java.lang.Thread.sleep(0, 18000);
 		}
 		
 		return "";
@@ -80,7 +86,7 @@ public class LedController {
 		
 		for (int i=0; i<100; i++)
 		{
-			pin.pulse(2);
+			pin.pulse(1);
 			try {
 				java.lang.Thread.sleep(0, 20000);
 			} catch (InterruptedException e) {
