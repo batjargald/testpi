@@ -58,7 +58,58 @@ public class LedController {
 			GpioController gpio = GpioFactory.getInstance();
 			pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
 		}
-		pin.pulse(5000);
+		
+		for (int i=0; i<100; i++)
+		{
+			pin.pulse(1);
+			try {
+				java.lang.Thread.sleep(0, 20000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		for (int i=0; i<100; i++)
+		{
+			pin.pulse(2);
+			try {
+				java.lang.Thread.sleep(0, 20000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return "pulse";
+	}
+	
+	@RequestMapping("/left")
+	public String left(){
+		if(pin==null){
+			GpioController gpio = GpioFactory.getInstance();
+			pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
+		}
+		
+		for (int i=0; i<100; i++)
+		{
+			pin.pulse(1000);
+			try {
+				java.lang.Thread.sleep(0, 20000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		for (int i=0; i<100; i++)
+		{
+			pin.pulse(2000);
+			try {
+				java.lang.Thread.sleep(0, 20000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		return "pulse";
 	}

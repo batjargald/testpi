@@ -11,25 +11,25 @@ import com.pi4j.io.gpio.RaspiPin;
 @RestController
 public class ServoController {
 	
-	@RequestMapping("/left")
+	@RequestMapping("/left2")
 	public String left(){
 		if(LedController.pin==null){
 			GpioController gpio = GpioFactory.getInstance();
 			LedController.pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
 		}
 		
-		LedController.pin.blink(1, 1000);
+		LedController.pin.blink(1, 100);
 		return "";
 	}
 	
-	@RequestMapping("/right")
+	@RequestMapping("/right2")
 	public String right(){
 		if(LedController.pin==null){
 			GpioController gpio = GpioFactory.getInstance();
 			LedController.pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
 		}
 		
-		LedController.pin.blink(2, 1000);
+		LedController.pin.blink(2, 100);
 		return "";
 	}
 
