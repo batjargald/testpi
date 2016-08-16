@@ -51,8 +51,8 @@ public class LedController {
 		return "blinked";
 	}
 	
-	@RequestMapping("/pulse")
-	public String pulse(){
+	@RequestMapping("/right")
+	public String right(){
 		if(pin==null){
 			GpioController gpio = GpioFactory.getInstance();
 			pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
@@ -68,18 +68,7 @@ public class LedController {
 			}
 		}
 		
-		for (int i=0; i<100; i++)
-		{
-			pin.pulse(2);
-			try {
-				java.lang.Thread.sleep(0, 20000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-		return "pulse";
+		return "";
 	}
 	
 	@RequestMapping("/left")
@@ -91,24 +80,13 @@ public class LedController {
 		
 		for (int i=0; i<100; i++)
 		{
-			pin.pulse(1000);
+			pin.pulse(2);
 			try {
 				java.lang.Thread.sleep(0, 20000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		for (int i=0; i<100; i++)
-		{
-			pin.pulse(2000);
-			try {
-				java.lang.Thread.sleep(0, 20000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		
 		
 		return "";
 	}
