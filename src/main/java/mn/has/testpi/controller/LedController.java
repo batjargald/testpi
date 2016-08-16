@@ -47,7 +47,7 @@ public class LedController {
 			GpioController gpio = GpioFactory.getInstance();
 			pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
 		}
-		pin.blink(5000);
+		pin.blink(500, 5000);
 		
 		return "blinked";
 	}
