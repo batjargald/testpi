@@ -1,11 +1,14 @@
 package mn.has.testpi.controller;
 
+import java.util.Scanner;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
+import com.pi4j.io.gpio.GpioPinPwmOutput;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
@@ -15,7 +18,15 @@ public class LedController {
 	public static GpioPinDigitalOutput pin;
 	
 	@RequestMapping("/")
-	public String index(){
+	public String index(String param1){
+		try {
+			int degree = Integer.valueOf(param1);
+			System.out.println(degree);
+			ProcessBuilder pb = new ProcessBuilder("python","/home/pi/jagaa/servoController.py",""+degree);
+			pb.start();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 		return "index";
 	}
 	
@@ -43,6 +54,7 @@ public class LedController {
 	@RequestMapping("/blink")
 	public String blink(){
 		if(pin==null){
+			
 			GpioController gpio = GpioFactory.getInstance();
 			pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
 		}
@@ -79,10 +91,10 @@ public class LedController {
 	
 	@RequestMapping("/left")
 	public String left(){
-		if(pin==null){
-			GpioController gpio = GpioFactory.getInstance();
-			pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "", PinState.LOW);
-		}
+		GpioController gpio = GpioFactory.getInstance();
+		GpioPinPwmOutput pwmPin = gpio.provisionPwmOutputPin(RaspiPin.GPIO_01);
+		
+		pwmPin.setPwm(2);
 		
 		for (int i=0; i<100; i++)
 		{
