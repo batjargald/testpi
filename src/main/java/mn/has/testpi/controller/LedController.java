@@ -52,8 +52,7 @@ public class LedController {
 	}
 	
 	private void move(String mode){
-		switch (mode) {
-		case "w":
+		if(mode.equals("w")){
 			//zuun uragshaa
 			trasistorLA1.high();
 			trasistorLA2.low();
@@ -66,8 +65,7 @@ public class LedController {
 			trasistorRB1.high();
 			trasistorRB2.low();
 			System.out.println("FORWARD ...");
-			break;
-		case "s":
+		} else if(mode.equals("s")){
 			//zuun hoishoo
 			trasistorLA1.low();
 			trasistorLA2.high();
@@ -80,8 +78,7 @@ public class LedController {
 			trasistorRB1.low();
 			trasistorRB2.high();
 			System.out.println("BACKWARD ...");
-			break;
-		case "d":
+		} else if(mode.equals("d")){
 			//zuun uragshaa
 			trasistorLA1.high();
 			trasistorLA2.low();
@@ -94,8 +91,7 @@ public class LedController {
 			trasistorRB1.low();
 			trasistorRB2.high();
 			System.out.println("Turn RIGHT");
-			break;
-		case "a":
+		} else if(mode.equals("a")){
 			//zuun hoishoo
 			trasistorLA1.low();
 			trasistorLA2.high();
@@ -108,8 +104,7 @@ public class LedController {
 			trasistorRB1.high();
 			trasistorRB2.low();
 			System.out.println("Turn LEFT");
-			break;
-		case "q":
+		} else if(mode.equals("q")){
 			//zuun zogsoh
 			trasistorLA1.low();
 			trasistorLA2.low();
@@ -122,11 +117,8 @@ public class LedController {
 			trasistorRB1.low();
 			trasistorRB2.low();
 			System.out.println("STOP ....");
-			break;
-
-		default:
+		}else{
 			System.out.println("wrong command");
-			break;
 		}
 	}
 	
