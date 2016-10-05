@@ -35,8 +35,8 @@ public class LedController {
 	final GpioPinDigitalOutput trasistorRB2 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "Transistor RB2", PinState.LOW);
 	
 	@RequestMapping("/")
-	public String index(@RequestParam String param1, @RequestParam String mode){
-		if(mode.equals("move")){
+	public String index(@RequestParam String param1, @RequestParam String param2){
+		if(param2.equals("move")){
 			move(param1);
 		}else{
 			try {
